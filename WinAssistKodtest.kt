@@ -4,19 +4,53 @@ const val alLEFT = 1;
 fun main() {
     val lagerPoster = DM.getLager()
     val result = KodTest().TestaInkopspriserBtnClick(lagerPoster)
-    println("hehe")
-    println(result)
+    //println(result)
 }
 
 class KodTest {
-    fun TestaInkopspriserBtnClick(LagerPoster: List<LagerPost>): Pair<Int?,List<String>?> {
-	var Antal: Int = 0
-	var OrderFields: String = "mk"
+    fun TestaInkopspriserBtnClick(lagerPoster: List<LagerPost>): Pair<Int?,List<String>?> {
+	var ArtMK: String
+	var ArtNr: String
+	var Typ: String
+	var Kod: String
+	var MK: String
+	var RK: String
+	var VG: String
+	var PG: String
+	var Benamning: String
+	var LgrStatus: String
+	var Brutto: Double
+	var Netto: Double?
+	var TaMed: Boolean
+	var Antal = 0
+	var gAktuellInkopsrabatt = 1;
+	var OrderFields = "mk"
 	var LagerRe = mutableListOf<String>();
-	for (LagerPost in LagerPoster) {
-	    println("lol")
+	for (lagerPost in lagerPoster) {
+	    ArtMK = lagerPost.artikelMk
+	    LgrStatus = lagerPost.lgrStatus
+	    TaMed = false
+	    if (LgrStatus == "lgrJA" || LgrStatus == "lgrHEMTAGEN" || LgrStatus == "lgrUTGAENDE") {
+		var artikel = DM.getArtikel(ArtMK)
+		if (artikel != null) {
+		    Antal++
+		    ArtNr = artikel.artikelnr
+		    MK = artikel.mk
+		    Benamning = artikel.benamning1
+		    RK = artikel.rabattKod
+		    VG  = artikel.varuGrupp
+		    PG  = artikel.prodGrupp
+		    if (artikel.fastPris) {
+			Typ = "F"
+			Kod = "IS"
+			Brutto = artikel.pris
+			Netto = artikel.inkop
+			TaMed = (Netto == null)
+			println(TaMed)
+		    }
+		}
+	    }
 	}
-	println("lol")
 	return Pair(null, null)
     }
 

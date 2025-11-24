@@ -1,55 +1,57 @@
 PSEUDO CODE from AktiveraSnittPris.pas function to be translated.
         Use DM.getLager() to get List, DM.getArtikel() to get articles.
+	    I will leave variable declarations unwritten here and just assume they are declared as they are in the function
             Antal is 0
+	    gAktuellInkopsrabatt is 1
 	    OrderFields is 'mk'
 	    For each LagerPost in LagerPoster:
                 ArtMK is LagerPost.artikelMk
                 LgrStatus is LagerPost.lgrStatus
                 TaMed is false
                 if LgrStatus is lgrJA or lgrHEMTAGEN or lgrUTGAENDE:
-                    For each Artikel in Artiklar:
-                        if DM.getArtikel(ArtMK) is not null:
-                            Antal++
-                            ArtNr is Artikel.artikelNr
-                            MK is Artikel.mk
-                            Benamning is Artikel.benamning1
-                            RK is Artikel.rabattKod
-                            VG is Artikel.varuGrupp
-                            PG is Artikel.prodGrupp
-                            if Artikel.fastPris is true:
-                                Typ is 'F'
-                                Kod is 'IS
-                                Brutto is Artikel.pris
-                                Netto is Artikel.inkop
-                                TaMed is Netto equals null
-                            else if Artikel.useNetto:
-                                Typ is 'V'
-                                Brutto is Artikel.vNetto
-                                Netto is getInkopsPrisVNetto(Brutto, MK, RK, VG, PG)
-                                TaMed is (RK equals '') or (Netto is geq Brutto)
-                                if RK is '':
-                                    Kod is 'RS'
-                                else:
-                                    Kod is 'RV'
-                            else:
-                                Typ is 'B'
-                                Brutto is Artikel.pris
-                                Netto is getInkopsPris(Brutto, MK, RK, PG, VG)
-                                TaMed is (RK equals '') or (Netto is geq Brutto)
-                                if RK is '':
-                                    Kod is 'RS'
-                                else:
-                                    Kod is 'RV'
-                        else:
-                            ArtNr is LagerPost.artikelnr
-                            MK is LagerPost.mk
-                            Benamning is L_(199, 'SAKNAS I ARTIKELREGISTER!!')
-                            Typ is ''
-                            Kod is ''
-                            RK is ''
-                            Brutto is ''
-                            Netto is ''
-                            TaMed is True
+		    artikel is DM.getArtikel(ArtMK)
+		    if artikel is not null:
+		        Antal++
+		        ArtNr is artikel.artikelNr
+		        MK is artikel.mk
+		        Benamning is artikel.benamning1
+		        RK is artikel.rabattKod
+		        VG is artikel.varuGrupp
+		        PG is artikel.prodGrupp
+		        if artikel.fastPris is true:
+		            Typ is 'F'
+		            Kod is 'IS'
+		            Brutto is artikel.pris
+		            Netto is artikel.inkop
+		            TaMed is Netto equals null
+		       else if artikel.useNetto:
+     		           Typ is 'V'
+			   Brutto is artikel.vNetto
+			   Netto is getInkopsPrisVNetto(Brutto, MK, RK, VG, PG)
+			   TaMed is (RK equals '') or (Netto is geq Brutto)
+			   if RK is '':
+			       Kod is 'RS'
+			   else:
+			        Kod is 'RV'
+		       else:
+		           Typ is 'B'
+			   Brutto is artikel.pris
+			   Netto is getInkopsPris(Brutto, MK, RK, PG, VG)
+			   TaMed is (RK equals '') or (Netto is geq Brutto)
+			   if RK is '':
+			       Kod is 'RS'
+			   else:
+			       Kod is 'RV'
+		    else:
+		        ArtNr is LagerPost.artikelnr
+			MK is LagerPost.mk
+			Benamning is L_(199, 'SAKNAS I ARTIKELREGISTER!!')
+			Typ is ''
+			Kod is ''
+			RK is ''
+			Brutto is ''
+			Netto is ''
+			TaMed is True
 		if TaMed:
 		    Typ is AddBlanks(Typ, 4, alLEFT)
 		    Kod is AddBlanks(Kod, 4, alLEFT)
