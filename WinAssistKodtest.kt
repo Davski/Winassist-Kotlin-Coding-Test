@@ -107,8 +107,12 @@ class KodTest {
 		    TaMed = true
 		}
 	    }
-
 	    if (TaMed) {
+
+		// Converting double values to Str values for the data visualization into LagerRE
+		NettoStr = Netto?.toString() ?: ""
+		BruttoStr = Brutto.toString()
+
 		Typ = AddBlanks(Typ, 4, alLEFT)
 		Kod = AddBlanks(Kod, 4, alLEFT)
 		ArtNr = AddBlanks(ArtNr, 18, alLEFT)
@@ -143,8 +147,8 @@ class KodTest {
 	BruttoStr = AddBlanks(L_(102, "Pris"), 10, alRIGHT)
 	LagerRE.add(0, "--------------------------------------------------------------------------------------\n")
 	LagerRE.add(0, Typ+Kod+ArtNr+MK+RK+Benamning+NettoStr+BruttoStr)
-	println(Antal)
-	println(LagerRE)
+	// println(Antal)
+	// println(LagerRE.joinToString("\n"))
 	return Pair(Antal, LagerRE)
     }
 
@@ -161,7 +165,7 @@ class KodTest {
     }
 
     fun AddBlanks(S: String, Antal: Int, Typ: Int): String {
-	return if (Typ == 1) S.padStart(Antal) else S.padEnd(Antal)
+	return if (Typ == 0) S.padStart(Antal) else S.padEnd(Antal)
     }
 }
 
@@ -169,16 +173,37 @@ class DM {
     companion object {
 	val lager1 = LagerPost("123VO", "lgrJA", "123", "VO")
 	val lager2 = LagerPost("456VO", "lgrHEMTAGEN", "456", "VO")
+	val lager3 = LagerPost("789VO", "lgrUTGAENDE", "789", "VO")
+	val lager4 = LagerPost("000VO", "lgrJA", "000", "VO")
+	val lager5 = LagerPost("111VO", "lgrHEMTAGEN", "111", "VO")
+	val lager6 = LagerPost("333VO", "lgrUTGAENDE", "333", "VO")
+	val lager7 = LagerPost("666VO", "lgrJA", "666", "VO")
+	val lager8 = LagerPost("ABCVO", "lgrHEMTAGEN", "ABC", "VO")
+	val lager9 = LagerPost("999VO", "lgrUTGAENDE", "999", "VO")
 	val artikel1 = Artikel("123VO", "123", "VO", "Artikel 1", "RAB1", "VGR1", "PG1", true, 123.45, 0.0, false, 0.0)
 	val artikel2 = Artikel("456VO", "456", "VO", "Artikel 2", "RAB2", "VGR2", "PG2", true, 234.56, 0.0, false, 0.0)
+	val artikel3 = Artikel("789VO", "789", "VO", "Artikel 3", "RAB3", "VGR3", "PG3", true, 000.0, 1.0, false, 0.0)
+	val artikel4 = Artikel("000VO", "000", "VO", "Artikel 4", "", "VGR4", "PG4", false, 100.0, 2.0, false, 0.0)
+	val artikel5 = Artikel("111VO", "111", "VO", "Artikel 5", "RAB5", "VGR5", "PG5", false, 200.0, 3.0, true, 0.0)
+	val artikel6 = Artikel("333VO", "333", "VO", "Artikel 6", "RAB6", "VGR6", "PG6", false, 1.0, 4.0, false, 0.0)
+	val artikel7 = Artikel("666VO", "666", "VO", "Artikel 7", "RAB7", "VGR7", "PG7", true, 400.0, null, false, 0.0)
+	val artikel8 = Artikel("777VO", "777", "VO", "Artikel 8", "RAB8", "VGR8", "PG8", true, 400.0, null, false, 0.0)
+	val artikel9 = Artikel("999VO", "999", "VO", "Artikel 9", "", "VGR9", "PG9", false, 400.0, 0.0, true, 0.0)
 	fun getLager(): List<LagerPost> {
-	    return listOf(lager1, lager2)
+	    return listOf(lager1, lager2, lager3, lager4, lager5, lager6, lager7, lager8, lager9)
 	}
 
 	fun getArtikel(artikelMk: String): Artikel? {
 	    return when (artikelMk) {
 		"123VO" -> artikel1
 		"456VO" -> artikel2
+		"789VO" -> artikel3
+		"000VO" -> artikel4
+		"111VO" -> artikel5
+		"333VO" -> artikel6
+		"666VO" -> artikel7
+		"777VO" -> artikel8
+		"999VO" -> artikel9
 		else -> null
 	    }
 	}
