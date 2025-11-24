@@ -1,9 +1,13 @@
+const val alRIGHT = 0;
+const val alLEFT = 1;
+
 class KodTest {
     fun TestaInkopspriserBtnClick(LagerPoster: List<LagerPost>): Pair<Int,List<String>> {
         /* PSEUDO CODE from AktiveraSnittPris.pas function to be translated.
         Use DM.getLager() to get List, DM.getArtikel() to get articles.
             Antal is 0
-            For each LagerPost in LagerPoster:
+	    OrderFields is 'mk'
+	    For each LagerPost in LagerPoster:
                 ArtMK is LagerPost.artikelMk
                 LgrStatus is LagerPost.lgrStatus
                 TaMed is false
@@ -51,21 +55,56 @@ class KodTest {
                             Brutto is ''
                             Netto is ''
                             TaMed is True
-                            
+		if TaMed:
+		    Typ is AddBlanks(Typ, 4, alLEFT)
+		    Kod is AddBlanks(Kod, 4, alLEFT)
+		    ArtNr is AddBlanks(ArtNr, 18, alLEFT)
+		    MK is AddBlanks(MK, 5, alLEFT)
+		    RK is AddBlanks(RK, 5, alLEFT)
+		    Benamning is AddBlanks(Benamning, 30, alLEFT)
+		    Netto is AddBlanks(Netto, 10, alRIGHT)
+		    Brutto is AddBlanks(Brutto, 10, alRIGHT)
+		    LagerRE.Lines.Add(Typ+Kod+ArtNr+MK+RK+Benamning+Netto+Brutto)
+	    OrderFields is ''
+	  LagerRE.Add('')
+	  LagerRE.Add(L_(200, 'Typer:'))
+	  LagerRE.Add(L_(201, 'B = Inköpspris beräknat på rabattkod mot bruttopris'))
+	  LagerRE.Add(L_(202, 'V = Inköpspris beräknat på rabattkod mot verkstadsnetto'))
+	  LagerRE.Add(L_(203, 'F = Fast inköpspris'))
+
+	  LagerRE.Add('')
+	  LagerRE.Add(L_(204, 'Koder:'))
+	  LagerRE.Add(L_(205, 'IS = Inköpspris saknas'))
+	  LagerRE.Add(L_(206, 'RS = Rabattkod saknas'))
+	  LagerRE.Add(L_(207, 'RV = Rabattkod saknar värde'))
+	  Typ is AddBlanks('Typ', 4, alLEFT)
+	  Kod is AddBlanks('Kod', 4, alLEFT)
+	  ArtNr is AddBlanks(L_(37, 'Artikelnr'), 18, alLEFT)
+	  MK is AddBlanks('MK', 5, alLEFT)
+	  RK is AddBlanks('RK', 5, alLEFT)
+	  Benamning is AddBlanks(L_(98, 'Benämning'), 30, alLEFT)
+	  Netto is AddBlanks(L_(209, 'Inköp'), 10, alRIGHT)
+	  Brutto is AddBlanks(L_(102, 'Pris'), 10, alRIGHT)
+	  LagerRE.Add(0, '--------------------------------------------------------------------------------------')
+	  LagerRE.Add(0, Typ+Kod+ArtNr+MK+RK+Benamning+Netto+Brutto)
 
          */
 
     }
     fun getInkopsPris(brutto: Double, mk: String, rk: String, vg: String, pg: String): Double {
-		    return brutto
+	return brutto
     }
 
     fun getInkopsPrisVNetto(brutto: Double, mk: String, rk: String, vg: String, pg: String): Double {
-		    return brutto / 2.0
-	}
+	return brutto / 2.0
+    }
 
     fun L_(id: Int, text: String): String {
-            return text
+        return text
+    }
+
+    fun AddBlanks(S: string, Antal: int, Typ, integer): String {
+        return Typ;
     }
 }
 
