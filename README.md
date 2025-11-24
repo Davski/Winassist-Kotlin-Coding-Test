@@ -20,7 +20,12 @@ Just to make LagerRE print things properly I made BruttoStr and NettoStr that co
 I should probably make a commit or separate branch where I change the Artikel dataclass and change Brutto and Netto to strings to mimic the Delphi code better.
 
 I noticed an issue with the helper functions where GetInkopsPris and GetInkopsPrisVNetto have arguments in the same order, but in the Delphi-code the arguments are not.
-This doesn't actually change anything since the helper functions given to me in Kotlin don't use the arguments, but real helper functions would need to take this into account.  
+This doesn't actually change anything since the helperf unctions given to me in Kotlin don't use the arguments, but real helper functions would need to take this into account.  
 I decided to keep the original Delphi argument order for the functions there since it didn't matter.
 
-I wanted to write unit tests, but it got a bit too late and I got a head ache so I skipped it.
+I wanted to write unit tests, but it got a bit too late and I got a head ache so I skipped it.  
+It is possible to "test" the code with the DM data class by uncommenting the two println functions right before the return of the main function.
+I added a bunch of different articles and lager posts to test different combinations of products.  
+
+To run the code simply use make and it will compile the code and execute it. make clean removes the compiled files.
+
