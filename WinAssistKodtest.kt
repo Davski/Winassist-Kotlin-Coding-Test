@@ -1,10 +1,23 @@
 const val alRIGHT = 0;
 const val alLEFT = 1;
 
+fun main() {
+    val lagerPoster = DM.getLager()
+    val result = KodTest().TestaInkopspriserBtnClick(lagerPoster)
+    println("hehe")
+    println(result)
+}
+
 class KodTest {
-    fun TestaInkopspriserBtnClick(LagerPoster: List<LagerPost>): Pair<Int,List<String>> {
-	var Antal: integer = 0
-	var OrderFields: string = 'mk'
+    fun TestaInkopspriserBtnClick(LagerPoster: List<LagerPost>): Pair<Int?,List<String>?> {
+	var Antal: Int = 0
+	var OrderFields: String = "mk"
+	var LagerRe = mutableListOf<String>();
+	for (LagerPost in LagerPoster) {
+	    println("lol")
+	}
+	println("lol")
+	return Pair(null, null)
     }
 
     fun getInkopsPris(brutto: Double, mk: String, rk: String, vg: String, pg: String): Double {
@@ -19,8 +32,8 @@ class KodTest {
         return text
     }
 
-    fun AddBlanks(S: string, Antal: int, Typ, integer): String {
-	return if (Typ = 1) S.padStart(Antal) else S.padEnd(Antal)
+    fun AddBlanks(S: String, Antal: Int, Typ: Int): String {
+	return if (Typ == 1) S.padStart(Antal) else S.padEnd(Antal)
     }
 }
 
