@@ -3,7 +3,10 @@ const val alLEFT = 1;
 
 class KodTest {
     fun TestaInkopspriserBtnClick(LagerPoster: List<LagerPost>): Pair<Int,List<String>> {
+	var Antal: integer = 0
+	var OrderFields: string = 'mk'
     }
+
     fun getInkopsPris(brutto: Double, mk: String, rk: String, vg: String, pg: String): Double {
 	return brutto
     }
@@ -17,7 +20,7 @@ class KodTest {
     }
 
     fun AddBlanks(S: string, Antal: int, Typ, integer): String {
-        return Typ;
+	return if (Typ = 1) S.padStart(Antal) else S.padEnd(Antal)
     }
 }
 
