@@ -29,3 +29,4 @@ I added a bunch of different articles and lager posts to test different combinat
 
 To run the code simply use make and it will compile the code and execute it. make clean removes the compiled files.
 
+I used kotlin compiler v2.2.20 from https://github.com/JetBrains/kotlin/releases/download/v2.2.20/kotlin-compiler-2.2.20.zip  
