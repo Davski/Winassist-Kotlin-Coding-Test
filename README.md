@@ -5,6 +5,6 @@ I first started by writing pseudo-code from the Delphi function, skipping all th
 This will help me with the translation.
 
 I did some changes to the data class Artikel since there is a line in the Delphi code at line 246.
-In this Line Netto takes a value from Artikel.inkop where in Delphi it's as tring value that can be empty.
+In this Line Netto takes a value from Artikel.inkop where in Delphi it's a string value that can be empty.
 In Kotlin this value is defined as a double, but I am allowing it to be null and checking for it for backwards compatibility.
-This should replicate Delphi behavior and work with older databases that can possibly input an empty string where one expects a double.
+This should replicate the Delphi behavior and work with older databases that can possibly input an empty string where one expects a double.
