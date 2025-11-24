@@ -8,7 +8,7 @@ PSEUDO CODE from AktiveraSnittPris.pas function to be translated.
                 ArtMK is LagerPost.artikelMk
                 LgrStatus is LagerPost.lgrStatus
                 TaMed is false
-                if LgrStatus is lgrJA or lgrHEMTAGEN or lgrUTGAENDE:
+                if LgrStatus lgrJA or lgrHEMTAGEN or lgrUTGAENDE:
 		    artikel is DM.getArtikel(ArtMK)
 		    if artikel is not null:
 		        Antal++
@@ -24,24 +24,24 @@ PSEUDO CODE from AktiveraSnittPris.pas function to be translated.
 		            Brutto is artikel.pris
 		            Netto is artikel.inkop
 		            TaMed is Netto equals null
-		       else if artikel.useNetto:
-     		           Typ is 'V'
-			   Brutto is artikel.vNetto
-			   Netto is getInkopsPrisVNetto(Brutto, MK, RK, VG, PG)
-			   TaMed is (RK equals '') or (Netto is geq Brutto)
-			   if RK is '':
-			       Kod is 'RS'
-			   else:
+		        else if artikel.useNetto:
+     		            Typ is 'V'
+			    Brutto is artikel.vNetto
+			    Netto is getInkopsPrisVNetto(Brutto, MK, RK, VG, PG)
+			    TaMed is (RK equals '') or (Netto is geq Brutto)
+			    if RK is '':
+			        Kod is 'RS'
+			    else:
 			        Kod is 'RV'
-		       else:
-		           Typ is 'B'
-			   Brutto is artikel.pris
-			   Netto is getInkopsPris(Brutto, MK, RK, PG, VG)
-			   TaMed is (RK equals '') or (Netto is geq Brutto)
-			   if RK is '':
-			       Kod is 'RS'
-			   else:
-			       Kod is 'RV'
+		        else:
+		            Typ is 'B'
+			    Brutto is artikel.pris
+			    Netto is getInkopsPris(Brutto, MK, RK, PG, VG)
+			    TaMed is (RK equals '') or (Netto is geq Brutto)
+			    if RK is '':
+			        Kod is 'RS'
+			    else:
+			        Kod is 'RV'
 		    else:
 		        ArtNr is LagerPost.artikelnr
 			MK is LagerPost.mk
