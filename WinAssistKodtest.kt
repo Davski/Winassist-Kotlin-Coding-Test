@@ -8,7 +8,7 @@ fun main() {
 }
 
 class KodTest {
-    fun TestaInkopspriserBtnClick(lagerPoster: List<LagerPost>): Pair<Int?,List<String>?> {
+    fun TestaInkopspriserBtnClick(lagerPoster: List<LagerPost>): Pair<Int,List<String>> {
 	var ArtMK: String = ""
 	var ArtNr: String = ""
 	var Typ: String = ""
@@ -231,3 +231,4 @@ data class Artikel(
     val useNetto: Boolean,
     val vNetto: Double
 )
+
